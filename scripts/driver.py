@@ -10,6 +10,7 @@ if __name__ == '__main__':
 
     backup_parser = subparsers.add_parser('backup')
     backup_parser.add_argument('profiles', nargs='+')
+    backup_parser.add_argument('-Y', action='store_true')
 
     subparsers.add_parser('about')
 
