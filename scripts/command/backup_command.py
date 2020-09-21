@@ -7,13 +7,7 @@ from utils.printing import print_error, print_success, print_warning
 from utils.size_utils import pretty_format_bytes
 
 
-def _print_progress(current, total, transferred_bytes):
-    print(
-        "\rProgress : {0:d}/{1:d} \t Transferred {2:s}".format(current, total, pretty_format_bytes(transferred_bytes)),
-        end='', flush=True)
-
-
-def backup_entry(sync_entry: SyncEntry):
+def _backup_entry(sync_entry: SyncEntry, prompt):
     print(f'Syncing:{sync_entry.name}')
 
     print_warning('Gathering info ...')
@@ -29,7 +23,13 @@ def backup_entry(sync_entry: SyncEntry):
         if _ not in ['Y', 'y', '']:
             return
 
-    worker.backup(progress_callback=_print_progress)
+    print(f'{sync_entry.sync_profile.source_device.name}:{sync_entry.source_path} ->'
+          f' {sync_entry.sync_profile.target_device.name}:{sync_entry.target_path} ')
+
+    worker.backup(progress_callback=lambda current, total, transferred_bytes: print(
+        "\rProgress : {0:d}/{1:d} \t Transferred {2:<16}".format(current, total, pretty_format_bytes(transferred_bytes)),
+        end='', flush=True))
+
     print_success('\ncomplete!')
 
 
