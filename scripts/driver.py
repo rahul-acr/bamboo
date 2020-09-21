@@ -1,0 +1,32 @@
+import sys
+import argparse
+
+if __name__ == '__main__':
+    parser = argparse.ArgumentParser(description='Bamboo backup')
+    subparsers = parser.add_subparsers(dest='command')
+
+    subparsers.add_parser('device')
+    subparsers.add_parser('profile')
+
+    backup_parser = subparsers.add_parser('backup')
+    backup_parser.add_argument('profiles', nargs='+')
+
+    subparsers.add_parser('about')
+
+    args = parser.parse_args()
+
+    command = args.command
+
+    if command == 'device':
+        from command.device_command import run
+    elif command == 'profile':
+        from command.profile_command import run
+    elif command == 'backup':
+        from command.backup_command import run
+    elif command == 'about':
+        from command.about_command import run
+    else:
+        sys.stderr.write(f'{command} is not a valid command\n')
+        exit(1)
+
+    run(**args.__dict__)

@@ -1,0 +1,14 @@
+{
+  "source_device": "device1",
+  "target_device": "device2",
+  "sync_entries": [
+    {
+      "name": "demo",
+      "source": "home/rahul/PythonProjects/in/",
+      "target": "home/rahul/PythonProjects/out/",
+      "filter_regex": [
+        ".*.jpg$"
+      ]
+    }
+  ]
+}
