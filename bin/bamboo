@@ -1,1 +1,2 @@
-python ../scripts/driver.py "$@"
+BASEDIR=$(dirname "$0")
+python $BASEDIR/../scripts/driver.py "$@"
