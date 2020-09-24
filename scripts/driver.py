@@ -1,8 +1,7 @@
-import sys
 import argparse
 
 if __name__ == '__main__':
-    parser = argparse.ArgumentParser(description='Bamboo backup')
+    parser = argparse.ArgumentParser(prog='bamboo', description='Bamboo backup')
     subparsers = parser.add_subparsers(dest='command')
 
     subparsers.add_parser('device')
@@ -27,7 +26,6 @@ if __name__ == '__main__':
     elif command == 'about':
         from command.about_command import run
     else:
-        sys.stderr.write(f'{command} is not a valid command\n')
-        exit(1)
+        parser.error('Invalid usage')
 
     run(**args.__dict__)
