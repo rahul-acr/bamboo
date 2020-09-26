@@ -1,4 +1,4 @@
-from utils.printing import print_bold
+from ..utils.printing import print_bold
 
 
 def run(**_):
