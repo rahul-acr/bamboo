@@ -1,10 +1,10 @@
-from backup.backup_worker import BackupWorker
-from errors.device_error import DeviceNotReadyError, DeviceError
-from sync.configuration import load_sync_profile
-from sync.sync import Device
-from sync.sync import SyncEntry
-from utils.printing import print_error, print_success, print_warning
-from utils.size_utils import pretty_format_bytes
+from bamboo.backup.backup_worker import BackupWorker
+from bamboo.errors.device_error import DeviceNotReadyError, DeviceError
+from bamboo.sync.configuration import load_sync_profile
+from bamboo.sync.sync import Device
+from bamboo.sync.sync import SyncEntry
+from bamboo.utils.printing import print_error, print_success, print_warning
+from bamboo.utils.size_utils import pretty_format_bytes
 
 
 def _backup_entry(sync_entry: SyncEntry, prompt):

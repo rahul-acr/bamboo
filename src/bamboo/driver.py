@@ -18,13 +18,13 @@ if __name__ == '__main__':
     command = args.command
 
     if command == 'device':
-        from command.device_command import run
+        from bamboo.command.device_command import run
     elif command == 'profile':
-        from command.profile_command import run
+        from bamboo.command.profile_command import run
     elif command == 'backup':
-        from command.backup_command import run
+        from bamboo.command.backup_command import run
     elif command == 'about':
-        from command.about_command import run
+        from bamboo.command.about_command import run
     else:
         parser.error('Invalid usage')
 

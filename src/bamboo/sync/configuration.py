@@ -1,8 +1,7 @@
-from json import JSONDecodeError
 from os.path import join
 import json
-from sync.sync import SyncProfile
-from sync.device import Device
+from bamboo.sync.sync import SyncProfile
+from bamboo.sync.device import Device
 from pathlib import Path
 from os import listdir
 

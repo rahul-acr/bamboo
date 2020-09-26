@@ -4,8 +4,8 @@ from os.path import exists
 from shutil import move, copyfile
 from typing import List
 
-from backup.backup_load import BackupLoad
-from sync.sync import SyncEntry
+from bamboo.backup.backup_load import BackupLoad
+from bamboo.sync.sync import SyncEntry
 
 
 class BackupWorker:

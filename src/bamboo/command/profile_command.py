@@ -1,5 +1,5 @@
-from sync.configuration import light_load_sync_profiles
-from utils.printing import print_success
+from bamboo.sync.configuration import light_load_sync_profiles
+from bamboo.utils.printing import print_success
 
 
 def run(**_):

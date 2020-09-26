@@ -1,5 +1,5 @@
-from sync.configuration import load_all_devices
-from utils.printing import print_success
+from bamboo.sync.configuration import load_all_devices
+from bamboo.utils.printing import print_success
 
 
 def run(**_):

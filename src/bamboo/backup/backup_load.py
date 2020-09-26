@@ -1,7 +1,7 @@
 from os import stat
 from os.path import isfile, join, exists
 
-from sync.sync import SyncEntry
+from bamboo.sync.sync import SyncEntry
 
 
 class BackupLoad:

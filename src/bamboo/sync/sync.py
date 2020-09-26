@@ -1,7 +1,7 @@
 from os.path import join
 import re
 import time
-from .device import Device
+from bamboo.sync.device import Device
 
 
 class SyncProfile:
