@@ -7,17 +7,28 @@ Bamboo is a simple command line tool for creating regular backups
 Bamboo is simple command line tool 
 
 
+## Build
+
+```commandline
+python setup.py bdist_wheel
+```
+
 ## Installation
+```commandline
+python -m pip install dist/bamboo-0.1-py3-none-any.whl
+```
 
-Just download this repository and keep the bin directory in  `PATH`
-
+## Installation
+```commandline
+python -m pip uninstall bamboo
+```
 
 ## Usage
 
-```bash
+```commandline
 bamboo profile
 bamboo device
-bamboo backup -auto
+bamboo backup --auto
 ```
 
 ## Contributing
