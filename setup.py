@@ -11,8 +11,8 @@ setuptools.setup(
     description="Bamboo backup tool",
     long_description=long_description,
     long_description_content_type="text/markdown",
-    scripts=['bamboo'],
-    url="https://github.com/rahul-acr/sampleproject",
+    scripts=['bin/bamboo'],
+    url="https://github.com/rahul-acr/bamboo",
     packages=setuptools.find_packages(),
     classifiers=[
         "Programming Language :: Python :: 3",
