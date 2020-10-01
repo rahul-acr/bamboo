@@ -39,10 +39,9 @@ bamboo backup --auto
 
 ```text
 $>bamboo device
-*PC      : /
-*Lens    : /run/media/rahul/Lens/
-Camera   : /run/media/rahul/DX-50/
-OnePlus6 : /run/user/1000/gvfs/mtp:host=OnePlus_OnePlus_1615b55a/
+*Camera (0.35)	: /run/media/rahul/mtp:host=Canon_m6112/
+Lens	:/run/media/rahul/Lens
+OnePlus6    :/run/user/1000/gvfs/mtp:host=OnePlus51201/Internal shared storage/
 ```
 
 ``bamboo profile`` will list down all configured profiles
