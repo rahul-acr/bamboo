@@ -1,6 +1,6 @@
 # Bamboo
 
-Bamboo is a simple command line tool for creating regular backups
+Bamboo is a python based simple command line tool for creating regular backups
 
 ## Description
 
@@ -14,11 +14,14 @@ python setup.py bdist_wheel
 ```
 
 ## Installation
+Grab the wheel from the release or build from source
 ```commandline
 python -m pip install dist/bamboo-0.1-py3-none-any.whl
 ```
 
-## Installation
+And bamboo should be available from the terminal
+
+## Uninstallation
 ```commandline
 python -m pip uninstall bamboo
 ```
@@ -29,6 +32,35 @@ python -m pip uninstall bamboo
 bamboo profile
 bamboo device
 bamboo backup --auto
+```
+
+## Examples
+``bamboo device`` will list down all known devices, mount points and if they are online
+
+```text
+$>bamboo device
+*PC      : /
+*Lens    : /run/media/rahul/Lens/
+Camera   : /run/media/rahul/DX-50/
+OnePlus6 : /run/user/1000/gvfs/mtp:host=OnePlus_OnePlus_1615b55a/
+```
+
+``bamboo profile`` will list down all configured profiles
+
+```text
+$>bamboo profile
+sample_profile   : Lens    ==> PC   
+OP6_photo_sync   : OnePlus6   ==> Lens
+```
+
+```text
+$>bamboo backup sample_profile
+device1 usage : 60.79 GB / 101.27 GB (34.85 %)
+device2 usage : 60.79 GB / 101.27 GB (34.85 %)
+Syncing:demo
+Gathering info ...
+No file found for backup. Skipping.
+Sync for profile:sample_profile completed
 ```
 
 ## Contributing
