@@ -53,6 +53,7 @@ sample_profile   : Lens    ==> PC
 OP6_photo_sync   : OnePlus6   ==> Lens
 ```
 
+``bamboo backup <profile>`` will backup as per the provided sync profile
 ```text
 $>bamboo backup sample_profile
 device1 usage : 60.79 GB / 101.27 GB (34.85 %)
@@ -62,6 +63,8 @@ Gathering info ...
 No file found for backup. Skipping.
 Sync for profile:sample_profile completed
 ```
+
+Or ``bamboo backup --auto`` will automatically do backups as per available devices
 
 ## Contributing
 Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change.
