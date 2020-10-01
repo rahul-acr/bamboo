@@ -1,12 +1,21 @@
-from os.path import join
+from os.path import join, exists
 import json
 from bamboo.sync.sync import SyncProfile
 from bamboo.sync.device import Device
 from pathlib import Path
 from os import listdir
+import sys
 
-_DEVICES_ROOT = join(str(Path.home()), '.config/bamboo/devices')
-_SYNC_CONFIG_ROOT = join(str(Path.home()), '.config/bamboo/profiles')
+
+_CONFIGURATION_HOME = join(str(Path.home()), '.config/bamboo/')
+_DEVICES_ROOT = join(_CONFIGURATION_HOME, 'devices')
+_SYNC_CONFIG_ROOT = join(_CONFIGURATION_HOME, 'profiles')
+
+
+def _assert_configuration_exist():
+    if not exists(_CONFIGURATION_HOME):
+        sys.stderr.write(f'Bamboo configuration not found. Please create one in {_CONFIGURATION_HOME} ')
+        exit(1)
 
 
 def _load_device_from_filename(filename: str):
@@ -21,6 +30,7 @@ def _load_device(device_name: str):
 
 
 def load_all_devices():
+    _assert_configuration_exist()
     devices = []
     for file in listdir(_DEVICES_ROOT):
         devices.append(_load_device_from_filename(file))
@@ -28,6 +38,7 @@ def load_all_devices():
 
 
 def light_load_sync_profiles():
+    _assert_configuration_exist()
     profiles = []
     for profile_filename in listdir(_SYNC_CONFIG_ROOT):
         with open(join(_SYNC_CONFIG_ROOT, profile_filename)) as fp:
@@ -40,6 +51,7 @@ def light_load_sync_profiles():
 
 
 def load_sync_profile(sync_config_name: str) -> SyncProfile:
+    _assert_configuration_exist()
     with open(join(_SYNC_CONFIG_ROOT, sync_config_name + '.json')) as fp:
         sync_config_json = json.load(fp)
 
