@@ -4,15 +4,15 @@ from os.path import exists
 from shutil import move, copyfile
 from typing import List
 
-from bamboo.backup.backup_load import BackupLoad
+from bamboo.transfer.backup_load import TransferLoad
 from bamboo.sync.sync import SyncEntry
 
 
-class BackupWorker:
+class TransferWorker:
     def __init__(self, sync_entry: SyncEntry):
         self._sync_entry = sync_entry
         self._sync_profile = self._sync_entry.sync_profile
-        self._backup_loads: List[BackupLoad] = []
+        self._backup_loads: List[TransferLoad] = []
         self._purged = 0
         self._backed = 0
         self._transfer_size_in_bytes = 0
@@ -24,7 +24,7 @@ class BackupWorker:
         assert self._sync_profile.source_device.is_device_online(), 'Connect the source device'
 
         for filename in listdir(self._sync_entry.source_path):
-            backup_load = BackupLoad(filename, self._sync_entry)
+            backup_load = TransferLoad(filename, self._sync_entry)
             if backup_load.is_eligible_for_backup():
                 self._backup_loads.append(backup_load)
                 self._transfer_size_in_bytes += backup_load.size_in_bytes()
@@ -70,15 +70,15 @@ class BackupWorker:
         self._purged = self._backed = 0
         self._source_info_collected = self._backup_complete = False
 
-    def _copy_load(self, backup_load: BackupLoad):
+    def _copy_load(self, backup_load: TransferLoad):
         if not exists(backup_load.target_path):
             copyfile(backup_load.source_path, backup_load.target_path)
         self._backed += 1
 
-    def _delete_load(self, backup_load: BackupLoad):
+    def _delete_load(self, backup_load: TransferLoad):
         remove(backup_load.source_path)
         self._purged += 1
 
-    def _move_load(self, backup_load: BackupLoad):
+    def _move_load(self, backup_load: TransferLoad):
         move(backup_load.source_path, backup_load.target_path)
         self._backed += 1

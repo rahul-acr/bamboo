@@ -1,4 +1,4 @@
-from bamboo.backup.backup_worker import BackupWorker
+from bamboo.transfer.transfer_worker import TransferWorker
 from bamboo.errors.device_error import DeviceNotReadyError, DeviceError
 from bamboo.sync.configuration import light_load_sync_profiles
 from bamboo.sync.configuration import load_sync_profile
@@ -10,11 +10,11 @@ from bamboo.utils.size_utils import pretty_format_bytes
 _show_prompt = True
 
 
-def _backup_entry(sync_entry: SyncEntry):
+def _transfer_entry(sync_entry: SyncEntry):
     print(f'Syncing:{sync_entry.name}')
 
     print_warning('Gathering info ...')
-    worker = BackupWorker(sync_entry)
+    worker = TransferWorker(sync_entry)
     worker.collect_source_info()
 
     if worker.load_count() == 0:
@@ -57,12 +57,12 @@ def _execute(profile_name):
     _print_device_usage(sync_profile.target_device)
 
     for entry in sync_profile.sync_entries:
-        _backup_entry(entry)
+        _transfer_entry(entry)
 
     print_success(f'Sync for profile:{sync_profile.name} completed')
 
 
-def backup_profiles(profiles):
+def _transfer_profiles(profiles):
     for profile in profiles:
         try:
             _execute(profile)
@@ -83,4 +83,4 @@ def run(**kwargs):
         profiles = [p.name for p in all_profiles
                     if p.source_device.is_device_online() and p.target_device.is_device_online()]
 
-    backup_profiles(profiles)
+    _transfer_profiles(profiles)

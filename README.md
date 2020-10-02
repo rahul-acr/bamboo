@@ -1,11 +1,6 @@
 # Bamboo
 
-Bamboo is a python based simple command line tool for creating regular backups
-
-## Description
-
-Bamboo is simple command line tool 
-
+Bamboo is a python based simple command line tool for creating regular file transfer and backups. Bamboo provides simple yet useful features to automate the file transfers as per configurations.
 
 ## Build
 
@@ -21,23 +16,30 @@ python -m pip install dist/bamboo-0.1-py3-none-any.whl
 
 And bamboo should be available from the terminal
 
+#### Creating the configuration
+`bamboo` configuration home needs to be created under user home directory and underlying directories for device and profile configurations
+- `<user_home>/.config/bamboo`
+- `<user_home>/.config/bamboo/devices`
+- `<user_home>/.config/bamboo/profiles`
+
+
 ## Uninstallation
 ```commandline
 python -m pip uninstall bamboo
 ```
 
 ## Usage
-
+#TODO add command line options
 ```commandline
 bamboo profile
 bamboo device
-bamboo backup --auto
+bamboo run --auto
 ```
 
 ## Examples
 ``bamboo device`` will list down all known devices, mount points and if they are online
 
-```text
+```
 $>bamboo device
 *Camera (0.35)	: /run/media/rahul/mtp:host=Canon_m6112/
 Lens	:/run/media/rahul/Lens
@@ -46,15 +48,15 @@ OnePlus6    :/run/user/1000/gvfs/mtp:host=OnePlus51201/Internal shared storage/
 
 ``bamboo profile`` will list down all configured profiles
 
-```text
+```
 $>bamboo profile
 sample_profile   : Lens    ==> PC   
 OP6_photo_sync   : OnePlus6   ==> Lens
 ```
 
-``bamboo backup <profile>`` will backup as per the provided sync profile
+``bamboo run <profile1> <profile2> ... <profileN>`` will backup as per the provided sync profiles (in the order of arguments)
 ```text
-$>bamboo backup sample_profile
+$>bamboo run sample_profile
 device1 usage : 60.79 GB / 101.27 GB (34.85 %)
 device2 usage : 60.79 GB / 101.27 GB (34.85 %)
 Syncing:demo
@@ -63,7 +65,50 @@ No file found for backup. Skipping.
 Sync for profile:sample_profile completed
 ```
 
-Or ``bamboo backup --auto`` will automatically do backups as per available devices
+Or ``bamboo run --auto`` will automatically do backups as per available devices
+
+## Configuration
+
+#### Device
+To add a device a `<device_name>.json` needs to be created under `<user_home>/.config/bamboo/devices` with mount point information.
+
+```json
+{
+    "mount_point" : "/run/media/rahul/Lens"
+}
+```
+#### Profile
+To add a device a `<profile_name>.json` needs to be created under `<user_home>/.config/bamboo/profiles` with mount point information.
+Profiles contain a source and a target device (names should be as per device configuration). And it contains N number of sync entries.
+
+sync entries take following keys,
+- `name` 
+- `source`
+This is relative to the source device mount point
+- `target`
+This is relative to the target device mount point
+- `filter_regex` (optional)
+A list of regex to match against filenames. If none of the regex match the file will be excluded.
+- `retention_period` (in days) (optional)
+If mentioned files modified under the retention period will not be deleted from source location. 
+
+```json
+{
+  "source_device": "device1",
+  "target_device": "device2",
+  "sync_entries": [
+    {
+      "name": "demo",
+      "source": "home/rahul/demo/in/",
+      "target": "home/rahul/demo/out/",
+      "filter_regex": [
+        ".*.jpg$"
+      ],
+      "retention_period": 5
+    }
+  ]
+}
+```
 
 ## Contributing
 Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change.

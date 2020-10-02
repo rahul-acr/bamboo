@@ -4,7 +4,7 @@ from os.path import isfile, join, exists
 from bamboo.sync.sync import SyncEntry
 
 
-class BackupLoad:
+class TransferLoad:
     def __init__(self, filename: str, sync_entry: SyncEntry):
         self.filename = filename
         self._sync_entry = sync_entry
