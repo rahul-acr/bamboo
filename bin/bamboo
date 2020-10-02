@@ -9,7 +9,7 @@ if __name__ == '__main__':
     subparsers.add_parser('device')
     subparsers.add_parser('profile')
 
-    backup_parser = subparsers.add_parser('backup')
+    backup_parser = subparsers.add_parser('run')
     backup_parser.add_argument('profiles', nargs='*')
     backup_parser.add_argument('-Y', action='store_true')
     backup_parser.add_argument('--auto', action='store_true')
@@ -24,8 +24,8 @@ if __name__ == '__main__':
         from bamboo.command.device_command import run
     elif command == 'profile':
         from bamboo.command.profile_command import run
-    elif command == 'backup':
-        from bamboo.command.backup_command import run
+    elif command == 'run':
+        from bamboo.command.transfer_command import run
     elif command == 'about':
         from bamboo.command.about_command import run
     else:

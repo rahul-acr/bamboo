@@ -57,11 +57,12 @@ OP6_photo_sync   : OnePlus6   ==> Lens
 ``bamboo run <profile1> <profile2> ... <profileN>`` will backup as per the provided sync profiles (in the order of arguments)
 ```text
 $>bamboo run sample_profile
-device1 usage : 60.79 GB / 101.27 GB (34.85 %)
-device2 usage : 60.79 GB / 101.27 GB (34.85 %)
 Syncing:demo
 Gathering info ...
-No file found for backup. Skipping.
+7 files found 8.14 MB are to be transferred. continue ? (y) : y
+device1:/home/rahul/PythonProjects/in/ -> device2:/home/rahul/PythonProjects/out/ 
+Progress : 7/7 	 Transferred 8.14 MB         
+complete!
 Sync for profile:sample_profile completed
 ```
 

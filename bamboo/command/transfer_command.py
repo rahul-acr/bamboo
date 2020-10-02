@@ -1,9 +1,8 @@
-from bamboo.transfer.transfer_worker import TransferWorker
 from bamboo.errors.device_error import DeviceNotReadyError, DeviceError
 from bamboo.sync.configuration import light_load_sync_profiles
 from bamboo.sync.configuration import load_sync_profile
-from bamboo.sync.sync import Device
 from bamboo.sync.sync import SyncEntry
+from bamboo.transfer.transfer_worker import TransferWorker
 from bamboo.utils.printing import print_success, print_warning
 from bamboo.utils.size_utils import pretty_format_bytes
 
@@ -37,24 +36,14 @@ def _transfer_entry(sync_entry: SyncEntry):
     print_success('\ncomplete!')
 
 
-def _print_device_usage(device: Device):
-    total, used, free = device.usage()
-    print(f'{device.name} usage : {pretty_format_bytes(free)} / {pretty_format_bytes(total)}'
-          f' ({round((used * 100) / total, 2)} %)')
-
-
 def _execute(profile_name):
     sync_profile = load_sync_profile(profile_name)
 
     if not sync_profile.source_device.is_device_online():
         raise DeviceNotReadyError(f'Please connect {sync_profile.source_device.name}')
 
-    _print_device_usage(sync_profile.source_device)
-
     if not sync_profile.target_device.is_device_online():
         raise DeviceNotReadyError(f'Please connect {sync_profile.target_device.name}')
-
-    _print_device_usage(sync_profile.target_device)
 
     for entry in sync_profile.sync_entries:
         _transfer_entry(entry)
