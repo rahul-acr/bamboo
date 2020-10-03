@@ -110,7 +110,7 @@ Pull requests and suggestions are welcome. For major changes, please open an iss
 
 
 ## License
-[MIT](https://choosealicense.com/licenses/mit/)
+MIT
 
-##Project status
+## Project status
 This project is currently actively maintained by me. 
