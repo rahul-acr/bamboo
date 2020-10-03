@@ -13,31 +13,11 @@ Grab the wheel from the release or build from source
 ```commandline
 python -m pip install dist/bamboo-0.1-py3-none-any.whl
 ```
-
 And bamboo should be available from the terminal
 
-#### Creating the configuration
-`bamboo` configuration home needs to be created under user home directory and underlying directories for device and profile configurations
-- `<user_home>/.config/bamboo`
-- `<user_home>/.config/bamboo/devices`
-- `<user_home>/.config/bamboo/profiles`
-
-
-## Uninstallation
-```commandline
-python -m pip uninstall bamboo
-```
-
-## Usage
-#TODO add command line options
-```commandline
-bamboo profile
-bamboo device
-bamboo run --auto
-```
 
 ## Examples
-``bamboo device`` will list down all known devices, mount points and if they are online
+``bamboo device`` will list down all known devices, mount points and show if they are online
 
 ```
 $>bamboo device
@@ -70,6 +50,11 @@ Or ``bamboo run --auto`` will automatically do backups as per available devices
 
 ## Configuration
 
+`bamboo` configuration home needs to be created under user home directory and underlying directories for device and profile configurations
+- `<user_home>/.config/bamboo`
+- `<user_home>/.config/bamboo/devices`
+- `<user_home>/.config/bamboo/profiles`
+
 #### Device
 To add a device a `<device_name>.json` needs to be created under `<user_home>/.config/bamboo/devices` with mount point information.
 
@@ -79,7 +64,10 @@ To add a device a `<device_name>.json` needs to be created under `<user_home>/.c
 }
 ```
 #### Profile
-To add a device a `<profile_name>.json` needs to be created under `<user_home>/.config/bamboo/profiles` with mount point information.
+
+Profiles are a set of file types that fall under a logical  
+
+To add a device a `<profile_name>.json` needs to be created under `<user_home>/.config/bamboo/profiles`.
 Profiles contain a source and a target device (names should be as per device configuration). And it contains N number of sync entries.
 
 sync entries take following keys,
@@ -111,8 +99,14 @@ If mentioned files modified under the retention period will not be deleted from 
 }
 ```
 
+## Uninstallation
+```commandline
+python -m pip uninstall bamboo
+```
+
+
 ## Contributing
-Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change.
+Pull requests and suggestions are welcome. For major changes, please open an issue first to discuss what you would like to change.
 
 
 ## License
