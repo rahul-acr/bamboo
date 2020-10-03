@@ -65,9 +65,12 @@ To add a device a `<device_name>.json` needs to be created under `<user_home>/.c
 ```
 #### Profile
 
-Profiles are a set of file types that fall under a logical  
+Profiles are a set of file transfers that fall under a logical group. Profiles contain sync entries, these describe file transfers in more granular level.
 
-To add a device a `<profile_name>.json` needs to be created under `<user_home>/.config/bamboo/profiles`.
+For example, transferring files from your DSLR camera could be a sync profile. 2 sync entries would be there to move RAW and Regular JPEG files to different directories.
+And there could be another profile to sync the video files which is rarely used.
+
+To add a profile a `<profile_name>.json` needs to be created under `<user_home>/.config/bamboo/profiles`.
 Profiles contain a source and a target device (names should be as per device configuration). And it contains N number of sync entries.
 
 sync entries take following keys,
