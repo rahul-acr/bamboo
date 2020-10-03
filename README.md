@@ -9,9 +9,9 @@ python setup.py bdist_wheel
 ```
 
 ## Installation
-Grab the wheel from the release or build from source
+Grab the wheel from the release or build from source. Download [bamboo 0.1 wheel](dist/bamboo-0.1-py3-none-any.whl).
 ```commandline
-python -m pip install dist/bamboo-0.1-py3-none-any.whl
+python -m pip install bamboo-0.1-py3-none-any.whl
 ```
 And bamboo should be available from the terminal
 
