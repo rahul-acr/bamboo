@@ -11,8 +11,8 @@ if __name__ == '__main__':
 
     backup_parser = subparsers.add_parser('run')
     backup_parser.add_argument('profiles', nargs='*')
-    backup_parser.add_argument('-Y', action='store_true')
-    backup_parser.add_argument('--auto', action='store_true')
+    backup_parser.add_argument('-Y', action='store_true', help='disable transfer prompt')
+    backup_parser.add_argument('--auto', action='store_true', help='auto mode')
 
     subparsers.add_parser('about')
 
